@@ -1,0 +1,20 @@
+# Pythonキャッシュ
+__pycache__/
+*.pyc
+
+# バックアップ
+scripts/backups/
+scripts/backup_log.txt
+
+# 環境変数
+.env
+.env.*
+scripts/.env
+
+# ログ
+scripts/update_log.json
+scripts/asatamin_url_cache.json
+
+# ルートの未整理画像（images/characters/へ移動済みのもの）
+*.png
+!images/**/*.png

@@ -24,6 +24,7 @@
       "Edit(**/.env)"
     ],
     "ask": [
+      "Bash(rm:*)",
       "Bash(rm -rf:*)",
       "Bash(rm -r:*)",
       "Bash(git reset:*)",
