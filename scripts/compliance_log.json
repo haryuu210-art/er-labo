@@ -1,0 +1,28 @@
+{
+  "scrape_counts": {},
+  "gemini_counts": {
+    "2026-05-05": 4
+  },
+  "violations": [
+    {
+      "type": "scrape_blocked",
+      "reason": "ブロック対象URL: https://asatamin-eternalreturn.com/2021/07/29/jackie/",
+      "timestamp": "2026-05-05T13:43:36.234759"
+    },
+    {
+      "type": "scrape_blocked",
+      "reason": "ブロック対象URL: https://w.atwiki.jp/erjp/pages/45.html",
+      "timestamp": "2026-05-05T13:43:36.241613"
+    },
+    {
+      "type": "scrape_blocked",
+      "reason": "ブロック対象URL: https://asatamin-eternalreturn.com/jackie/",
+      "timestamp": "2026-05-05T13:44:07.745461"
+    },
+    {
+      "type": "scrape_blocked",
+      "reason": "ブロック対象URL: https://w.atwiki.jp/erjp/pages/45.html",
+      "timestamp": "2026-05-05T13:44:07.752362"
+    }
+  ]
+}

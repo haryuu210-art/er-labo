@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラ対策 — ER LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/characters.css?v=2">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">ER<span>LAB</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="characters.html" class="active">キャラ対策</a></li>
+      <li><a href="rank-guide.html">ランク上げ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="char-layout">
+
+  <!-- 左サイドバー -->
+  <aside class="char-sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">// SEARCH</div>
+      <input type="text" class="search-box" id="searchInput" placeholder="キャラ名で検索...">
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">// ROLE</div>
+      <div class="role-filter-group">
+        <button class="role-btn r-all active" data-role="all"><span class="role-dot"></span>すべて</button>
+        <button class="role-btn r-assassin" data-role="アサシン"><span class="role-dot"></span>アサシン</button>
+        <button class="role-btn r-fighter"  data-role="ファイター"><span class="role-dot"></span>ファイター</button>
+        <button class="role-btn r-ranger"   data-role="マークスマン"><span class="role-dot"></span>マークスマン</button>
+        <button class="role-btn r-support"  data-role="サポート"><span class="role-dot"></span>サポート</button>
+        <button class="role-btn r-tank"     data-role="タンク"><span class="role-dot"></span>タンク</button>
+        <button class="role-btn r-mage"     data-role="メイジ"><span class="role-dot"></span>メイジ</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">// STATS</div>
+      <div class="sidebar-stat">
+        <span id="visibleCount">0</span> / <span id="totalCount">0</span> キャラ表示中
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="ai-notice-small">
+        ⚠ 情報はAI生成を含みます。正確性は各自でご確認ください。
+      </div>
+    </div>
+  </aside>
+
+  <!-- メインカードグリッド -->
+  <main class="char-main">
+    <div class="page-header-inline">
+      <h1>// キャラ対策データベース</h1>
+      <p>キャラをクリックして詳細を表示</p>
+    </div>
+    <div class="char-grid" id="charGrid"></div>
+  </main>
+
+  <!-- 右詳細パネル -->
+  <aside class="char-detail" id="charDetail">
+    <div class="detail-empty" id="detailEmpty">
+      <div class="detail-empty-icon">⚔</div>
+      <p>キャラを選択すると<br>詳細情報が表示されます</p>
+    </div>
+    <div class="detail-content" id="detailContent" style="display:none">
+      <button class="detail-close" id="detailClose">✕</button>
+      <div class="detail-img-wrap">
+        <img id="detailImg" src="" alt="">
+        <div class="detail-img-placeholder" id="detailImgPlaceholder">👤</div>
+      </div>
+      <div class="detail-name-row">
+        <div>
+          <span class="detail-name" id="detailName"></span>
+          <div style="margin-top:0.3rem"><span id="detailRoleBadge"></span></div>
+        </div>
+        <div class="detail-badges" id="detailBadges"></div>
+      </div>
+      <div class="detail-body">
+        <div class="detail-section">
+          <div class="detail-section-label danger">⚠ 注意点</div>
+          <p id="detailCaution"></p>
+        </div>
+        <div class="detail-section">
+          <div class="detail-section-label counter">✦ 対策</div>
+          <p id="detailCounter"></p>
+        </div>
+        <div class="detail-section" id="detailSkillsWrap" style="display:none">
+          <div class="detail-section-label" style="color:var(--accent-gold)">◈ スキル</div>
+          <div class="skills-grid" id="detailSkills"></div>
+        </div>
+        <div class="detail-section" id="detailNoteWrap" style="display:none">
+          <div class="detail-section-label note">📌 特記事項</div>
+          <p id="detailNote"></p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<footer>
+  ER LAB — 個人攻略サイト | エターナルリターン非公式<br>
+  <small style="font-size:0.72rem; color:#555;">
+    当サイトはAI（Claude by Anthropic、Google Gemini）を使用して制作されています。掲載情報の正確性は保証しません。各自でご確認ください。<br>
+    キャラクター画像はNimble Neuronが提供する公式ファンキットを使用しています。Eternal Return &copy; Nimble Neuron Inc. All Rights Reserved.<br>
+    当サイトはEternal Return非公式ファンサイトであり、Nimble Neuron Inc.とは一切関係ありません。
+  </small>
+</footer>
+
+<script src="js/characters.js?v=4"></script>
+<script src="js/roles_skills.js?v=1"></script>
+<script>
+  const driveIds = {
+    "Eleven":           "Eleven",
+    "アイザック":       "Isaac",
+    "アイソル":         "Isol",
+    "アディナ":         "Adina",
+    "アデラ":           "Adela",
+    "アドリアナ":       "Adriana",
+    "アビゲイル":       "Abigail",
+    "アヤ":             "Aya",
+    "アルダ":           "Alda",
+    "アレックス":       "Alex",
+    "アロンソ":         "Alonso",
+    "イアン":           "Lyanh",
+    "イレム":           "Irem",
+    "ヴァーニャ":       "Vanya",
+    "ウィリアム":       "William",
+    "エイデン":         "Aiden",
+    "エヴァ":           "Eva",
+    "エキオン":         "Echion",
+    "エステル":         "Estelle",
+    "エマ":             "Emma",
+    "エレナ":           "Elena",
+    "ガーネット":       "Garnet",
+    "カーラ":           "Karla",
+    "カティア":         "Katja",
+    "カミロ":           "Camilo",
+    "キアラ":           "Chiara",
+    "キャッシー":       "Cathy",
+    "クロエ":           "Chloe",
+    "ケネス":           "Kenneth",
+    "ザヒル":           "Zahir",
+    "シウカイ":         "Xiukai",
+    "ジェニー":         "Jenny",
+    "シセラ":           "Sissela",
+    "シャーロット":     "Charlotte",
+    "ジャッキー":       "Jackie",
+    "シルヴィア":       "Silvia",
+    "スア":             "Sua",
+    "セリーヌ":         "Celine",
+    "ダイリン":         "LiDailin",
+    "タジア":           "Tazia",
+    "ダニエル":         "Daniel",
+    "ダルコ":           "Darko",
+    "つばめ":           "Tsubame",
+    "ティア":           "Tia",
+    "テオドール":       "Theodore",
+    "デビー&マーリン":  "Debbie",
+    "ナタポン":         "Nathapon",
+    "ナディン":         "Nadine",
+    "ニッキー":         "Nicky",
+    "ハート":           "Hart",
+    "バーバラ":         "Barbara",
+    "ビアンカ":         "Bianca",
+    "ピオロ":           "Piolo",
+    "ヒョヌ":           "Hyunwoo",
+    "フィオラ":         "Fiora",
+    "フェリックス":     "Felix",
+    "プリヤ":           "Priya",
+    "ヘイズ":           "Haze",
+    "ヘジン":           "Hyejin",
+    "マーカス":         "Markus",
+    "マイ":             "Mai",
+    "マグヌス":         "Magnus",
+    "マルティナ":       "Martina",
+    "ミルカ":           "Mirka",
+    "ヨハン":           "Johann",
+    "ラウラ":           "Laura",
+    "ルク":             "Luke",
+    "レオン":           "Leon",
+    "レニ":             "Leni",
+    "レノア":           "Lenore",
+    "レノックス":       "Lenox",
+    "彰一":             "Shoichi",
+    "雪":               "Yuki",
+    "莉央":             "Rio",
+    "バニス":           "Banis",
+    "ヒスイ":           "Hisui",
+    "ヤン":             "Yang",
+    "ユスティナ":       "Justina",
+    "ユミン":           "Yumin",
+    "ロッジ":           "Lodge",
+    "イシュトヴァーン": "Istvan",
+    "ニア":             "Nia",
+    "シュリン":         "Shirin",
+    "ヘンリー":         "Henry",
+    "ブレア":           "Blair",
+    "フェンリル":       "Fenrir",
+    "コラライン":       "Coraline",
+  };
+
+  let selectedChar = null;
+  let activeRole = 'all';
+
+  // ロール → CSSクラスマッピング
+  const roleCssMap = {
+    'アサシン': 'role-assassin', 'ファイター': 'role-fighter',
+    'マークスマン': 'role-ranger', 'サポート': 'role-support',
+    'タンク': 'role-tank', 'メイジ': 'role-mage',
+  };
+
+  function getRoleBadgeHtml(name) {
+    if (typeof charRoles === 'undefined') return '';
+    const role = charRoles[name];
+    if (!role) return '';
+    const cls = roleCssMap[role] || '';
+    return `<span class="badge badge-role ${cls}">${role}</span>`;
+  }
+
+
+  function getImgSrc(name) {
+    const imgFile = driveIds[name] || null;
+    return imgFile ? `images/characters/${imgFile}.png` : null;
+  }
+
+  function renderCards(list) {
+    const grid = document.getElementById('charGrid');
+    grid.innerHTML = '';
+    document.getElementById('visibleCount').textContent = list.length;
+
+    if (list.length === 0) {
+      grid.innerHTML = '<p class="no-result">該当するキャラが見つかりませんでした。</p>';
+      return;
+    }
+
+    list.forEach(c => {
+      const badges = '';
+
+      const roleBadge = getRoleBadgeHtml(c.name);
+      const imgSrc = getImgSrc(c.name);
+      const imgHtml = imgSrc
+        ? `<img src="${imgSrc}" alt="${c.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : '';
+      const placeholderStyle = imgSrc ? 'display:none;' : '';
+      const isSelected = selectedChar && selectedChar.name === c.name ? ' selected' : '';
+
+      grid.innerHTML += `
+        <div class="char-card${isSelected}" data-name="${c.name}" onclick="selectChar('${c.name.replace(/'/g, "\\'")}')">
+          <div class="char-img-wrap">
+            ${imgHtml}
+            <div class="char-img-placeholder" style="${placeholderStyle}">👤</div>
+          </div>
+          <div class="char-card-info">
+            <span class="char-name">${c.name}</span>
+            <div class="char-badges">${roleBadge}${badges}</div>
+          </div>
+        </div>`;
+    });
+  }
+
+  function buildSkillsHtml(name) {
+    if (typeof charSkills === 'undefined') return null;
+    const sk = charSkills[name];
+    if (!sk) return null;
+    const keys = [
+      ['P', 'passive'], ['Q', 'q'], ['W', 'w'], ['E', 'e'], ['R', 'r']
+    ];
+    return keys.map(([label, key]) => {
+      const s = sk[key];
+      if (!s || !s.name) return '';
+      return `<div class="skill-row">
+        <span class="skill-key">${label}</span>
+        <div class="skill-info">
+          <span class="skill-name">${s.name}</span>
+          <span class="skill-desc">${s.desc || ''}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function selectChar(name) {
+    const c = characters.find(x => x.name === name);
+    if (!c) return;
+    selectedChar = c;
+
+    document.querySelectorAll('.char-card').forEach(el => {
+      el.classList.toggle('selected', el.dataset.name === name);
+    });
+
+    const imgSrc = getImgSrc(name);
+    const detailImg = document.getElementById('detailImg');
+    const detailImgPlaceholder = document.getElementById('detailImgPlaceholder');
+
+    if (imgSrc) {
+      detailImg.src = imgSrc;
+      detailImg.style.display = 'block';
+      detailImgPlaceholder.style.display = 'none';
+      detailImg.onerror = () => {
+        detailImg.style.display = 'none';
+        detailImgPlaceholder.style.display = 'flex';
+      };
+    } else {
+      detailImg.style.display = 'none';
+      detailImgPlaceholder.style.display = 'flex';
+    }
+
+    document.getElementById('detailName').textContent = name;
+
+    // ロールバッジ + 特性バッジ
+    const roleBadge = document.getElementById('detailRoleBadge');
+    roleBadge.innerHTML = getRoleBadgeHtml(name);
+
+    document.getElementById('detailBadges').innerHTML = '';
+
+    document.getElementById('detailCaution').textContent = c.caution;
+    document.getElementById('detailCounter').textContent = c.counter;
+
+    // スキル情報
+    const skillsHtml = buildSkillsHtml(name);
+    const skillsWrap = document.getElementById('detailSkillsWrap');
+    if (skillsHtml) {
+      document.getElementById('detailSkills').innerHTML = skillsHtml;
+      skillsWrap.style.display = 'block';
+    } else {
+      skillsWrap.style.display = 'none';
+    }
+
+    const noteWrap = document.getElementById('detailNoteWrap');
+    if (c.note) {
+      document.getElementById('detailNote').textContent = c.note;
+      noteWrap.style.display = 'block';
+    } else {
+      noteWrap.style.display = 'none';
+    }
+
+    document.getElementById('detailEmpty').style.display = 'none';
+    document.getElementById('detailContent').style.display = 'block';
+    document.getElementById('charDetail').classList.add('active');
+  }
+
+  document.getElementById('detailClose').addEventListener('click', () => {
+    selectedChar = null;
+    document.querySelectorAll('.char-card').forEach(el => el.classList.remove('selected'));
+    document.getElementById('detailEmpty').style.display = 'flex';
+    document.getElementById('detailContent').style.display = 'none';
+    document.getElementById('charDetail').classList.remove('active');
+  });
+
+  function getFiltered() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    return characters.filter(c => {
+      if (!c.name.toLowerCase().includes(q)) return false;
+      // ロールフィルター
+      if (activeRole !== 'all') {
+        const role = (typeof charRoles !== 'undefined') ? charRoles[c.name] : '';
+        if (role !== activeRole) return false;
+      }
+      return true;
+    });
+  }
+
+  function updateAll() {
+    renderCards(getFiltered());
+    if (selectedChar) {
+      const still = getFiltered().find(c => c.name === selectedChar.name);
+      if (!still) {
+        document.getElementById('detailEmpty').style.display = 'flex';
+        document.getElementById('detailContent').style.display = 'none';
+        document.getElementById('charDetail').classList.remove('active');
+      }
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('input', updateAll);
+
+  // ロールフィルターボタン
+  document.querySelectorAll('.role-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeRole = this.dataset.role;
+      updateAll();
+    });
+  });
+
+  document.getElementById('totalCount').textContent = characters.length;
+  renderCards(characters);
+</script>
+</body>
+</html>
