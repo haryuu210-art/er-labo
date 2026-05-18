@@ -6,7 +6,8 @@
   <title>キャラ対策 — ER LAB</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Antique&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/characters.css?v=2">
 </head>
@@ -19,6 +20,8 @@
       <li><a href="index.html">HOME</a></li>
       <li><a href="characters.html" class="active">キャラ対策</a></li>
       <li><a href="rank-guide.html">ランク上げ</a></li>
+      <li><a href="changelog.html">更新履歴</a></li>
+      <li><a href="feedback.html">ご意見・ご要望</a></li>
     </ul>
   </div>
 </nav>
@@ -54,7 +57,7 @@
 
     <div class="sidebar-section">
       <div class="ai-notice-small">
-        ⚠ 情報はAI生成を含みます。正確性は各自でご確認ください。
+        情報はAI生成を含みます。正確性は各自でご確認ください。
       </div>
     </div>
   </aside>
@@ -62,8 +65,9 @@
   <!-- メインカードグリッド -->
   <main class="char-main">
     <div class="page-header-inline">
-      <h1>// キャラ対策データベース</h1>
-      <p>キャラをクリックして詳細を表示</p>
+      <p class="page-eyebrow">CHARACTER DATABASE</p>
+      <h1>キャラ対策データベース</h1>
+      <div class="patch-info">最終更新: <span id="patchDate">2026-05-06</span> / シーズン11</div>
     </div>
     <div class="char-grid" id="charGrid"></div>
   </main>
@@ -78,7 +82,7 @@
       <button class="detail-close" id="detailClose">✕</button>
       <div class="detail-img-wrap">
         <img id="detailImg" src="" alt="">
-        <div class="detail-img-placeholder" id="detailImgPlaceholder">👤</div>
+        <div class="detail-img-placeholder" id="detailImgPlaceholder"></div>
       </div>
       <div class="detail-name-row">
         <div>
@@ -89,11 +93,11 @@
       </div>
       <div class="detail-body">
         <div class="detail-section">
-          <div class="detail-section-label danger">⚠ 注意点</div>
+          <div class="detail-section-label danger">注意点</div>
           <p id="detailCaution"></p>
         </div>
         <div class="detail-section">
-          <div class="detail-section-label counter">✦ 対策</div>
+          <div class="detail-section-label counter">対策</div>
           <p id="detailCounter"></p>
         </div>
         <div class="detail-section" id="detailSkillsWrap" style="display:none">
@@ -101,7 +105,7 @@
           <div class="skills-grid" id="detailSkills"></div>
         </div>
         <div class="detail-section" id="detailNoteWrap" style="display:none">
-          <div class="detail-section-label note">📌 特記事項</div>
+          <div class="detail-section-label note">特記事項</div>
           <p id="detailNote"></p>
         </div>
       </div>
@@ -210,6 +214,7 @@
     "ブレア":           "Blair",
     "フェンリル":       "Fenrir",
     "コラライン":       "Coraline",
+    "ビヒョン":         "ビヒョン",
   };
 
   let selectedChar = null;
@@ -261,7 +266,7 @@
         <div class="char-card${isSelected}" data-name="${c.name}" onclick="selectChar('${c.name.replace(/'/g, "\\'")}')">
           <div class="char-img-wrap">
             ${imgHtml}
-            <div class="char-img-placeholder" style="${placeholderStyle}">👤</div>
+            <div class="char-img-placeholder" style="${placeholderStyle}"></div>
           </div>
           <div class="char-card-info">
             <span class="char-name">${c.name}</span>
@@ -359,10 +364,15 @@
     document.getElementById('charDetail').classList.remove('active');
   });
 
+  function toKatakana(str) {
+    return str.replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
+  }
+
   function getFiltered() {
-    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const raw = document.getElementById('searchInput').value.trim();
+    const q = toKatakana(raw).toLowerCase();
     return characters.filter(c => {
-      if (!c.name.toLowerCase().includes(q)) return false;
+      if (!toKatakana(c.name).toLowerCase().includes(q)) return false;
       // ロールフィルター
       if (activeRole !== 'all') {
         const role = (typeof charRoles !== 'undefined') ? charRoles[c.name] : '';

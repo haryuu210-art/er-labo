@@ -6,7 +6,9 @@
   <title>ER LAB — エターナルリターン攻略</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Antique&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,62 +20,114 @@
       <li><a href="index.html" class="active">HOME</a></li>
       <li><a href="characters.html">キャラ対策</a></li>
       <li><a href="rank-guide.html">ランク上げ</a></li>
+      <li><a href="changelog.html">更新履歴</a></li>
+      <li><a href="feedback.html">ご意見・ご要望</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-tag">ETERNAL RETURN STRATEGY GUIDE</div>
-  <h1>
-    <span class="main">ETERNAL</span><br>
-    <span class="gold">RETURN</span> LAB
-  </h1>
-  <p>エターナルリターン攻略情報サイト。キャラ対策・ランク上げのノウハウをまとめています。</p>
-  <a href="characters.html" class="btn btn-primary">キャラ対策を見る</a>
-  <a href="rank-guide.html" class="btn btn-secondary">ランク上げガイド</a>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">ETERNAL RETURN STRATEGY GUIDE</p>
+      <h1 class="hero-title">
+        <span class="hero-title-en">ER LAB</span>
+        <span class="hero-title-jp">キャラを知れば、<br>勝率は変わる。</span>
+      </h1>
+      <p class="hero-lead">エターナルリターン攻略データベース。全キャラの対策・ランク帯ごとの立ち回りを体系的にまとめています。</p>
+      <div class="hero-cta">
+        <a href="characters.html" class="btn btn-primary">キャラ対策を見る</a>
+        <a href="rank-guide.html" class="btn btn-secondary">ランク上げガイド</a>
+      </div>
+    </div>
+    <div class="hero-viz">
+      <p class="viz-label">現在のランク分布</p>
+      <div class="rank-stack">
+        <div class="rank-bar" data-rank="meteor">
+          <span class="rank-name">Meteor</span>
+          <div class="rank-bar-fill" style="width:3%"></div>
+          <span class="rank-pct">3%</span>
+        </div>
+        <div class="rank-bar" data-rank="diamond">
+          <span class="rank-name">Diamond</span>
+          <div class="rank-bar-fill" style="width:8%"></div>
+          <span class="rank-pct">8%</span>
+        </div>
+        <div class="rank-bar" data-rank="platinum">
+          <span class="rank-name">Platinum</span>
+          <div class="rank-bar-fill" style="width:18%"></div>
+          <span class="rank-pct">18%</span>
+        </div>
+        <div class="rank-bar" data-rank="gold">
+          <span class="rank-name">Gold</span>
+          <div class="rank-bar-fill" style="width:28%"></div>
+          <span class="rank-pct">28%</span>
+        </div>
+        <div class="rank-bar" data-rank="silver">
+          <span class="rank-name">Silver</span>
+          <div class="rank-bar-fill" style="width:24%"></div>
+          <span class="rank-pct">24%</span>
+        </div>
+        <div class="rank-bar" data-rank="bronze">
+          <span class="rank-name">Bronze</span>
+          <div class="rank-bar-fill" style="width:12%"></div>
+          <span class="rank-pct">12%</span>
+        </div>
+        <div class="rank-bar" data-rank="iron">
+          <span class="rank-name">Iron</span>
+          <div class="rank-bar-fill" style="width:7%"></div>
+          <span class="rank-pct">7%</span>
+        </div>
+      </div>
+      <p class="viz-note">上位ランクほど対策の差が勝敗を分ける</p>
+    </div>
+  </div>
+</div>
+
+<div class="data-strip">
+  <div class="data-strip-inner">
+    <div class="data-item">
+      <span class="data-num">70<span class="data-unit">+</span></span>
+      <span class="data-label">掲載キャラ数</span>
+    </div>
+    <div class="data-item">
+      <span class="data-num">3</span>
+      <span class="data-label">対策フラグ分類</span>
+    </div>
+    <div class="data-item">
+      <span class="data-num">随時</span>
+      <span class="data-label">パッチ対応更新</span>
+    </div>
+    <div class="data-item">
+      <span class="data-num">無料</span>
+      <span class="data-label">完全公開</span>
+    </div>
+  </div>
 </div>
 
 <main>
-  <div class="stats-row">
-    <div class="stat-box">
-      <div class="stat-num">70+</div>
-      <div class="stat-label">掲載キャラ数</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">3</div>
-      <div class="stat-label">フラグ分類</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">勝利への道</div>
-    </div>
-  </div>
-
+  <div class="section-rule"></div>
   <h2 class="section-title">コンテンツ</h2>
   <div class="cards-grid">
     <a href="characters.html" class="card">
-      <div class="card-icon">⚔️</div>
+      <p class="card-num">01</p>
       <h3>キャラ対策</h3>
       <p>全キャラの注意点・対策をまとめたデータベース。無敵・CC無効・ステルス持ちをフィルタリングできます。</p>
     </a>
     <a href="rank-guide.html" class="card">
-      <div class="card-icon">📈</div>
+      <p class="card-num">02</p>
       <h3>ランク上げガイド</h3>
       <p>序盤・中盤・終盤の動き方、立ち回りのコツ、ランクを効率よく上げるための考え方を解説。</p>
     </a>
     <a href="characters.html" class="card">
-      <div class="card-icon">🔍</div>
+      <p class="card-num">03</p>
       <h3>フラグ検索</h3>
       <p>「無敵持ち」「CC無効持ち」「ステルス持ち」でキャラを絞り込んで素早く確認できます。</p>
     </a>
   </div>
 
-  <div class="ai-notice">
-    ⚠️ <span>注意：</span>このサイトはAI（Claude）を活用して作成されています。情報の正確性については各自でご確認ください。
-  </div>
-
-  <div class="highlight-box">
-    📌 このサイトは個人が遊びながらまとめた攻略メモです。内容は随時更新予定。キャラ対策データは有志の方が作成されたスプレッドシートを参考にしています。
+  <div class="site-note">
+    このサイトはAI（Claude）を活用して作成された個人攻略メモです。情報の正確性については各自でご確認ください。キャラ対策データは有志の方が作成されたスプレッドシートを参考にしています。
   </div>
 </main>
 

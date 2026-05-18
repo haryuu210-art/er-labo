@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更新履歴 — ER LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .changelog-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .cl-entry {
+      border-left: 2px solid var(--border-color);
+      padding: 0 0 2rem 1.5rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .cl-entry::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: var(--accent-main);
+      border-radius: 50%;
+      position: absolute;
+      left: -6px;
+      top: 6px;
+    }
+    .cl-entry.minor::before { background: #444; }
+    .cl-date {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--accent-main);
+      margin-bottom: 0.2rem;
+    }
+    .cl-entry.minor .cl-date { color: var(--text-secondary); }
+    .cl-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+    .cl-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .cl-list li {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .cl-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border-color);
+    }
+    .cl-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 2px;
+      margin-right: 0.3rem;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+      vertical-align: middle;
+    }
+    .tag-new      { background: #14532d; color: #4ade80; }
+    .tag-fix      { background: #1e3a5f; color: #60a5fa; }
+    .tag-update   { background: #431407; color: #fb923c; }
+    .tag-security { background: #2e1065; color: #c084fc; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">ER<span>LAB</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="characters.html">キャラ対策</a></li>
+      <li><a href="rank-guide.html">ランク上げ</a></li>
+      <li><a href="changelog.html" class="active">更新履歴</a></li>
+      <li><a href="feedback.html">ご意見・ご要望</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="changelog-wrap">
+  <div class="page-header">
+    <h1>// 更新履歴</h1>
+    <p>サイトの変更・追加・修正の記録です。</p>
+  </div>
+
+  <div class="cl-entry">
+    <div class="cl-date">2026-05-06</div>
+    <div class="cl-title">機能追加・セキュリティ強化</div>
+    <ul class="cl-list">
+      <li><span class="cl-tag tag-new">NEW</span>更新履歴ページを追加</li>
+      <li><span class="cl-tag tag-new">NEW</span>ひらがな/カタカナ混在検索に対応（例：「えれな」→「エレナ」がヒット）</li>
+      <li><span class="cl-tag tag-new">NEW</span>パッチ更新日・シーズン表示を追加</li>
+      <li><span class="cl-tag tag-security">SEC</span>git管理を開始・自動バックアップ（毎日12時）を設定</li>
+      <li><span class="cl-tag tag-security">SEC</span>.claude/settings.json でClaude Codeの操作制限を設定</li>
+      <li><span class="cl-tag tag-fix">FIX</span>モバイル表示のサイドバーレイアウト崩れを修正</li>
+    </ul>
+  </div>
+
+  <div class="cl-entry">
+    <div class="cl-date">2026-05-05</div>
+    <div class="cl-title">ロール・UI改善</div>
+    <ul class="cl-list">
+      <li><span class="cl-tag tag-update">UPD</span>全87キャラのロール（アサシン/ファイター/マークスマン/サポート/タンク/メイジ）を設定</li>
+      <li><span class="cl-tag tag-fix">FIX</span>無敵・CC無効・ステルス表示を削除してUIをシンプルに</li>
+      <li><span class="cl-tag tag-fix">FIX</span>AP/AD/近接/遠距離バッジを削除</li>
+      <li><span class="cl-tag tag-update">UPD</span>ランク上げガイドの内容を実戦向けに修正</li>
+      <li><span class="cl-tag tag-new">NEW</span>制作者からの個人的意見である旨の説明書きを追加</li>
+    </ul>
+  </div>
+
+  <div class="cl-entry">
+    <div class="cl-date">2026-05-03</div>
+    <div class="cl-title">ロール機能・スキル表示UIを実装</div>
+    <ul class="cl-list">
+      <li><span class="cl-tag tag-new">NEW</span>ロール別フィルターボタンをサイドバーに追加</li>
+      <li><span class="cl-tag tag-new">NEW</span>roles_skills.js を新規作成（ロール・スキル・特性データ）</li>
+      <li><span class="cl-tag tag-new">NEW</span>キャラ詳細にロールバッジを表示</li>
+      <li><span class="cl-tag tag-new">NEW</span>スキル情報表示UIを追加（データは随時更新予定）</li>
+      <li><span class="cl-tag tag-new">NEW</span>set_role.py スクリプトでロール一括管理に対応</li>
+    </ul>
+  </div>
+
+  <div class="cl-entry minor">
+    <div class="cl-date">2026-05-01</div>
+    <div class="cl-title">サイト公開・初期構築</div>
+    <ul class="cl-list">
+      <li><span class="cl-tag tag-new">NEW</span>キャラ対策データベースページを公開</li>
+      <li><span class="cl-tag tag-new">NEW</span>87キャラの注意点・対策テキストを収録</li>
+      <li><span class="cl-tag tag-new">NEW</span>テキスト検索・カード表示機能を実装</li>
+      <li><span class="cl-tag tag-new">NEW</span>ランク上げガイドページを追加</li>
+      <li><span class="cl-tag tag-new">NEW</span>キャラ画像をファンキットから取得・表示</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  ER LAB — 個人攻略サイト | エターナルリターン非公式<br>
+  <small style="font-size:0.72rem; color:#555;">
+    当サイトはAI（Claude by Anthropic）を使用して制作されています。掲載情報の正確性は保証しません。各自でご確認ください。<br>
+    キャラクター画像はNimble Neuronが提供する公式ファンキットを使用しています。Eternal Return &copy; Nimble Neuron Inc. All Rights Reserved.<br>
+    当サイトはEternal Return非公式ファンサイトであり、Nimble Neuron Inc.とは一切関係ありません。
+  </small>
+</footer>
+
+</body>
+</html>

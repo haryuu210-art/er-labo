@@ -6,7 +6,8 @@
   <title>ランク上げガイド — ER LAB</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Antique&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,31 +19,165 @@
       <li><a href="index.html">HOME</a></li>
       <li><a href="characters.html">キャラ対策</a></li>
       <li><a href="rank-guide.html" class="active">ランク上げ</a></li>
+      <li><a href="changelog.html">更新履歴</a></li>
+      <li><a href="feedback.html">ご意見・ご要望</a></li>
     </ul>
   </div>
 </nav>
 
 <main>
   <div class="page-header">
-    <h1>// ランク上げガイド</h1>
-    <p>序盤〜終盤の動き方、立ち回りの考え方をまとめています。</p>
+    <p class="page-eyebrow">RANK GUIDE</p>
+    <h1>ランク上げガイド</h1>
+    <p class="page-lead">序盤〜終盤の動き方、立ち回りの考え方をまとめています。</p>
   </div>
 
-  <div class="ai-notice">
-    ⚠️ <span>注意：</span>このページの内容はAI（Claude）を活用して作成されています。情報の正確性は各自でご確認ください。
-  </div>
-
-  <div class="ai-notice" style="border-color: #555; color: var(--text-secondary); margin-top: 0.5rem;">
-    📝 <span style="color: var(--text-primary);">サイト制作者より：</span>このサイトに掲載されているキャラ対策・立ち回りの内容は、制作者個人のプレイ経験・主観に基づく意見を多く含みます。ゲームのバランス変更や環境の変化により内容が古くなっている場合があります。あくまで参考程度にお使いください。
+  <div class="site-note" style="margin-bottom: var(--s-10);">
+    掲載内容は制作者個人のプレイ経験・主観に基づきます。ゲームのバランス変更や環境の変化により内容が古くなっている場合があります。参考程度にお使いください。
   </div>
 
   <div class="highlight-box">
-    💡 ランクを上げる上で最も大切なのは「勝てる戦いだけをする」こと。無謀な戦いを避け、有利な状況を作ってから動くことが安定したポイント獲得につながります。
+    ランクを上げる上で最も大切なのは「勝てる戦いだけをする」こと。無謀な戦いを避け、有利な状況を作ってから動くことが安定したポイント獲得につながります。
   </div>
+
+  <div class="rank-section game-flow-section">
+    <h2>ゲームフロー</h2>
+
+    <div class="flow-scroll-wrap" id="flowScroll">
+      <div class="flow-track">
+
+        <!-- OPENING -->
+        <div class="flow-phase opening">
+          <div class="flow-phase-header">OPENING GAME</div>
+          <div class="flow-node">
+            <div class="flow-node-time">1日目 昼</div>
+            <p>狼と合流前の敵を探してファイト</p>
+          </div>
+          <div class="flow-vline"></div>
+          <div class="flow-node">
+            <div class="flow-node-time">1日目 夜</div>
+            <ul>
+              <li>基本的に分散ファームしたい</li>
+              <li>1分切ったら合流（ハイパーループへ）</li>
+            </ul>
+          </div>
+          <div class="flow-vline"></div>
+          <div class="flow-node">
+            <div class="flow-node-time">2日目 昼夜</div>
+            <ul>
+              <li>オブジェクト前以外のファイトは避ける</li>
+              <li>キオスクを早めに触る（昼1分切りが理想）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flow-arrow">▶</div>
+
+        <!-- MIDDLE -->
+        <div class="flow-phase middle">
+          <div class="flow-phase-header">MIDDLE GAME</div>
+          <div class="flow-node">
+            <div class="flow-node-time">3日目以降</div>
+            <div class="flow-branch-q">チームの装備部位数は？</div>
+            <div class="flow-branch-row">
+              <div class="flow-branch-card win">
+                <div class="flow-branch-label">5部位以上 — 勝ちムーブ</div>
+                <ul>
+                  <li>オブジェクトを狙う</li>
+                  <li>Cチームがいそうなら無理に狙わない</li>
+                </ul>
+              </div>
+              <div class="flow-branch-card lose">
+                <div class="flow-branch-label">4部位以下 — 負けムーブ</div>
+                <ul>
+                  <li>敵をひたすら避ける</li>
+                  <li>ファームで上振れ・漁夫を狙う</li>
+                  <li>復活クレジットは温存</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flow-vline"></div>
+          <div class="flow-node">
+            <div class="flow-node-time">5日目</div>
+            <div class="flow-branch-row">
+              <div class="flow-branch-card win">
+                <div class="flow-branch-label">フルビルド</div>
+                <p>漁夫・ウィクラインチームに注意しながらファイトを狙う</p>
+              </div>
+              <div class="flow-branch-card lose">
+                <div class="flow-branch-label">ビルド不足</div>
+                <p>エリアをキープしつつブッシュベイトを狙う</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow">▶</div>
+
+        <!-- END GAME -->
+        <div class="flow-phase endgame">
+          <div class="flow-phase-header">END GAME</div>
+          <div class="flow-node">
+            <div class="flow-node-time">最終エリア</div>
+            <div class="flow-branch-row">
+              <div class="flow-branch-card win">
+                <div class="flow-branch-label">エリア先取できる</div>
+                <p>ブッシュ・死角エリアにカメラ設置しエリアを確保</p>
+              </div>
+              <div class="flow-branch-card lose">
+                <div class="flow-branch-label">エリアを取られている</div>
+                <ul>
+                  <li>カメラを設置しながら前線を上げる</li>
+                  <li>エリアに入る時はEMPでカメラ無効化しながら進む</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Flow timeline: scroll-triggered animation + drag scroll */
+    (function() {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const delay = e.target.dataset.delay || 0;
+            setTimeout(() => e.target.classList.add('visible'), delay);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.flow-node, .flow-vline').forEach((el, i) => {
+        el.dataset.delay = i * 80;
+        obs.observe(el);
+      });
+
+      /* Drag-to-scroll */
+      const wrap = document.getElementById('flowScroll');
+      let isDown = false, startX, scrollLeft;
+      wrap.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - wrap.offsetLeft;
+        scrollLeft = wrap.scrollLeft;
+      });
+      wrap.addEventListener('mouseleave', () => isDown = false);
+      wrap.addEventListener('mouseup', () => isDown = false);
+      wrap.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        wrap.scrollLeft = scrollLeft - (e.pageX - wrap.offsetLeft - startX);
+      });
+    })();
+  </script>
 
   <div class="phase-grid">
     <div class="phase-card early">
-      <h3>▶ 序盤 (1〜5分)</h3>
+      <h3>序盤 <span class="phase-time">1〜5分</span></h3>
       <ul>
         <li>クラフトを優先してアイテムを揃える</li>
         <li>野生動物で経験値とスタックを稼ぐ</li>
@@ -52,7 +187,7 @@
       </ul>
     </div>
     <div class="phase-card mid">
-      <h3>▶ 中盤 (5〜15分)</h3>
+      <h3>中盤 <span class="phase-time">5〜15分</span></h3>
       <ul>
         <li>チームと合流して人数有利を作る</li>
         <li>ハイパーループで移動効率を上げる</li>
@@ -62,7 +197,7 @@
       </ul>
     </div>
     <div class="phase-card late">
-      <h3>▶ 終盤 (15分〜)</h3>
+      <h3>終盤 <span class="phase-time">15分〜</span></h3>
       <ul>
         <li>エリアが狭まるので位置取りを慎重に</li>
         <li>3チーム残っている時は漁夫を狙う</li>
@@ -74,7 +209,7 @@
   </div>
 
   <div class="rank-section">
-    <h2>// 基本的な考え方</h2>
+    <h2>基本的な考え方</h2>
     <ul class="tip-list">
       <li>人数有利で戦う。タイマンが強いキャラ以外は1v1を避けてチームで動く。</li>
       <li>体力有利がある状態で戦闘を仕掛ける。全快の相手にオールインしない。</li>
@@ -85,7 +220,7 @@
   </div>
 
   <div class="rank-section">
-    <h2>// 戦闘中の意識</h2>
+    <h2>戦闘中の意識</h2>
     <ul class="tip-list">
       <li>相手のスキルを把握してから戦う。無敵・CC無効持ちは特に要注意。</li>
       <li>CCスキルは無駄撃ちしない。相手のCC無効・無敵に合わせない。</li>
@@ -97,7 +232,7 @@
   </div>
 
   <div class="rank-section">
-    <h2>// 立ち位置・マップ意識</h2>
+    <h2>立ち位置・マップ意識</h2>
     <ul class="tip-list">
       <li>狭い場所はAOEキャラに有利。エリア掌握キャラがいる場合は広い場所を選ぶ。</li>
       <li>壁際は壁ドンキャラ（ヒョヌ・マーカスなど）に危険。壁に背を向けない。</li>
@@ -106,8 +241,224 @@
     </ul>
   </div>
 
+  <div class="rank-section wolf-farm-section">
+    <h2>オオカミファームルート（2日目昼）</h2>
+
+    <div class="highlight-box">
+      オブジェクトファイトに負けた後の立て直しとして、変異オオカミ・オオカミ狩りでクレジットを稼ぐ動きが有効です。2日目昼になったタイミングで全体マップを確認し、他チームの位置を見て狩れそうなルートを選択します。状況次第で先行して狩りに行くことも視野に入れます。<br><br>
+      <strong>注意：</strong>工場・洋弓場は他チームも同じ動きを考えていることが多く競合しやすいエリアです。個人的にはホテル→高級住宅街ルートか警察署ルートを好んで選ぶことが多いです。<br><br>
+      <span class="wolf-note">※ あくまで個人の考え方・立ち回りです。参考程度にお使いください。</span>
+    </div>
+
+    <div class="wolf-grid">
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A0%E3%82%AC%E3%82%BD%E3%82%B9%E3%82%BF%E2%86%92%E8%B7%AF%E5%9C%B0%E8%A3%8F%E2%86%92%E8%AD%A6%E5%AF%9F.png" alt="オオカミファームルート1 ガソリンスタンド→路地裏→警察署" loading="lazy">
+        <div class="wolf-card-label">ルート 1 — ガソスタ → 路地裏 → 警察署</div>
+      </div>
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A1%E6%B1%A0%E2%86%92%E5%B7%9D%E2%86%92%E5%AF%BA.png" alt="オオカミファームルート2 池→川→寺" loading="lazy">
+        <div class="wolf-card-label">ルート 2 — 池 → 川 → 寺</div>
+      </div>
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A2%E5%B7%A5%E5%A0%B4%E2%86%92%E3%83%90%E3%83%BC%E3%82%B8%E2%86%92%E6%B8%AF.png" alt="オオカミファームルート3 工場→バージ→港" loading="lazy">
+        <div class="wolf-card-label">ルート 3 — 工場 → バージ → 港</div>
+      </div>
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A3%E6%B4%8B%E5%BC%93%E2%86%92%E3%82%AC%E3%82%BD%E3%82%B9%E3%82%BF%E2%86%92%E8%B7%AF%E5%9C%B0%E8%A3%8F.png" alt="オオカミファームルート4 洋弓場→ガソリンスタンド→路地裏" loading="lazy">
+        <div class="wolf-card-label">ルート 4 — 洋弓場 → ガソスタ → 路地裏</div>
+      </div>
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A4%E3%83%9B%E3%83%86%E3%83%AB%E2%86%92%E6%B5%9C%E8%BE%BA%E2%86%92%E9%AB%98%E7%B4%9A.png" alt="オオカミファームルート5 ホテル→浜辺→高級住宅街" loading="lazy">
+        <div class="wolf-card-label">ルート 5 — ホテル → 浜辺 → 高級住宅街 ★</div>
+      </div>
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A5%E9%AB%98%E7%B4%9A%E2%86%92%E5%80%89%E5%BA%AB%E2%86%92%E6%B8%AF.png" alt="オオカミファームルート6 高級住宅街→倉庫→港" loading="lazy">
+        <div class="wolf-card-label">ルート 6 — 高級住宅街 → 倉庫 → 港</div>
+      </div>
+      <div class="wolf-card" onclick="openLightbox(this)">
+        <img src="images/%E2%91%A6%E8%AD%A6%E5%AF%9F%E7%BD%B2%E2%86%92%E8%B7%AF%E5%9C%B0%E8%A3%8F%E2%86%92%E3%82%AC%E3%82%BD%E3%82%B9%E3%82%BF.png" alt="オオカミファームルート7 警察署→路地裏→ガソリンスタンド" loading="lazy">
+        <div class="wolf-card-label">ルート 7 — 警察署 → 路地裏 → ガソスタ ★</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:1000; align-items:center; justify-content:center; flex-direction:column; gap:12px; overflow:hidden;">
+    <div id="lightbox-controls" style="position:absolute; top:16px; right:16px; display:flex; gap:8px; z-index:10;">
+      <button onclick="lbZoom(1.25)" style="background:var(--bg-raised); border:1px solid var(--border); color:var(--text); width:36px; height:36px; font-size:1.1rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center;">+</button>
+      <button onclick="lbZoom(0.8)"  style="background:var(--bg-raised); border:1px solid var(--border); color:var(--text); width:36px; height:36px; font-size:1.1rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center;">−</button>
+      <button onclick="lbReset()"    style="background:var(--bg-raised); border:1px solid var(--border); color:var(--text); width:36px; height:36px; font-size:0.65rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:var(--font-sans); letter-spacing:0.04em;">FIT</button>
+      <button onclick="closeLightbox()" style="background:var(--bg-raised); border:1px solid #f87171; color:#f87171; width:36px; height:36px; font-size:0.75rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center;">✕</button>
+    </div>
+    <div id="lightbox-hint" style="position:absolute; bottom:48px; left:50%; transform:translateX(-50%); font-family:var(--font-jp); font-size:0.7rem; color:var(--text-muted); white-space:nowrap; pointer-events:none;">スクロール or ピンチでズーム　クリックでドラッグ移動</div>
+    <div id="lightbox-viewport" style="width:100%; height:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:grab;">
+      <img id="lightbox-img" src="" alt="" style="max-width:92vw; max-height:82vh; object-fit:contain; border:1px solid var(--border); border-radius:4px; transform-origin:center; user-select:none; transition:transform 0.1s ease;" draggable="false">
+    </div>
+    <div id="lightbox-label" style="position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-family:var(--font-jp); font-size:0.85rem; color:var(--text-secondary); white-space:nowrap;"></div>
+  </div>
+
+  <script>
+    let lbScale = 1, lbX = 0, lbY = 0;
+    let lbDragging = false, lbDragStart = {x:0, y:0};
+    let lbLastPinchDist = null;
+
+    function lbApply() {
+      const img = document.getElementById('lightbox-img');
+      img.style.transform = `translate(${lbX}px, ${lbY}px) scale(${lbScale})`;
+    }
+
+    function lbZoom(factor) {
+      lbScale = Math.min(8, Math.max(0.5, lbScale * factor));
+      lbApply();
+    }
+
+    function lbReset() {
+      lbScale = 1; lbX = 0; lbY = 0;
+      const img = document.getElementById('lightbox-img');
+      img.style.transition = 'transform 0.2s ease';
+      lbApply();
+      setTimeout(() => { img.style.transition = 'transform 0.1s ease'; }, 210);
+    }
+
+    function openLightbox(card) {
+      const img = card.querySelector('img');
+      const label = card.querySelector('.wolf-card-label');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-label').textContent = label.textContent;
+      lbScale = 1; lbX = 0; lbY = 0;
+      lbApply();
+      const lb = document.getElementById('lightbox');
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    /* Wheel zoom */
+    document.getElementById('lightbox').addEventListener('wheel', e => {
+      e.preventDefault();
+      lbZoom(e.deltaY < 0 ? 1.12 : 0.88);
+    }, { passive: false });
+
+    /* Drag to pan */
+    const vp = document.getElementById('lightbox-viewport');
+    vp.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      lbDragging = true;
+      lbDragStart = { x: e.clientX - lbX, y: e.clientY - lbY };
+      vp.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', e => {
+      if (!lbDragging) return;
+      lbX = e.clientX - lbDragStart.x;
+      lbY = e.clientY - lbDragStart.y;
+      const img = document.getElementById('lightbox-img');
+      img.style.transition = 'none';
+      lbApply();
+    });
+    window.addEventListener('mouseup', () => {
+      if (!lbDragging) return;
+      lbDragging = false;
+      vp.style.cursor = 'grab';
+      const img = document.getElementById('lightbox-img');
+      img.style.transition = 'transform 0.1s ease';
+    });
+
+    /* Touch pinch-to-zoom + drag */
+    vp.addEventListener('touchstart', e => {
+      if (e.touches.length === 2) {
+        lbLastPinchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      } else if (e.touches.length === 1) {
+        lbDragging = true;
+        lbDragStart = { x: e.touches[0].clientX - lbX, y: e.touches[0].clientY - lbY };
+      }
+    }, { passive: true });
+
+    vp.addEventListener('touchmove', e => {
+      e.preventDefault();
+      if (e.touches.length === 2) {
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        if (lbLastPinchDist) lbZoom(dist / lbLastPinchDist);
+        lbLastPinchDist = dist;
+      } else if (e.touches.length === 1 && lbDragging) {
+        lbX = e.touches[0].clientX - lbDragStart.x;
+        lbY = e.touches[0].clientY - lbDragStart.y;
+        const img = document.getElementById('lightbox-img');
+        img.style.transition = 'none';
+        lbApply();
+      }
+    }, { passive: false });
+
+    vp.addEventListener('touchend', e => {
+      if (e.touches.length < 2) lbLastPinchDist = null;
+      if (e.touches.length === 0) lbDragging = false;
+    });
+
+    /* Keyboard */
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('lightbox').style.display === 'none') return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === '+' || e.key === '=') lbZoom(1.25);
+      if (e.key === '-') lbZoom(0.8);
+      if (e.key === '0') lbReset();
+    });
+  </script>
+
+  <div class="rank-section vls-section">
+    <h2>VLS 活用タイミング</h2>
+    <div class="vls-note">VLS（緊急脱出システム）は使いどころを間違えると取り返しがつかない。以下の3つのシナリオを基準にする。</div>
+    <div class="vls-cards">
+
+      <div class="vls-card">
+        <div class="vls-card-tag danger">即離脱</div>
+        <div class="vls-card-title">Cチーム確認 / 味方1人ダウン</div>
+        <p>戦闘中にCチームが視界に入ったとき、または味方が1人ダウンした時点で即VLS離脱を検討する。判断は難しいが、迷ったら離脱優先。離脱後は携帯キオスクで蘇生して立て直す。</p>
+      </div>
+
+      <div class="vls-card">
+        <div class="vls-card-tag move">移動</div>
+        <div class="vls-card-title">最終エリアが遠い</div>
+        <p>最終セーフゾーンまでの距離が遠い場合、VLSで飛ぶと移動時間と被弾リスクを大幅に減らせる。徒歩移動中に削られるより安全。</p>
+      </div>
+
+      <div class="vls-card">
+        <div class="vls-card-tag hunt">漁夫</div>
+        <div class="vls-card-title">臨時セーフゾーン2か所 / 残り3チーム</div>
+        <p>安全エリアが2か所あり残り3チームの状況で、自チームのエリアに他チームが確認できなければ漁夫を狙うチャンス。エリア縮小10秒前にVLSで飛ぶと奇襲効果が高い。</p>
+      </div>
+
+    </div>
+  </div>
+
   <div class="rank-section">
-    <h2>// キャラ選択の考え方</h2>
+    <h2>アイテム・ガジェット管理</h2>
+    <ul class="tip-list">
+      <li>2日目昼に焚き火が近ければ狩り人の大釜で万年スープを作る。回復量で有利を取るため、後半もガジェットポイントに余裕があるとき・ご飯がないときは積極的に使う。</li>
+      <li>ガジェットポイントはできるだけ温存し、40ポイント以上は常に残しておく。携帯キオスクをいつでも使える状態を維持することが最優先。</li>
+    </ul>
+  </div>
+
+  <div class="rank-section">
+    <h2>カメラ・ドローン活用</h2>
+    <ul class="tip-list">
+      <li>3日目以降は蘇生がクレジット（200）になるため、カメラ・ドローンのコストと比較してまだ安い。視界への投資として積極的に使う場面を増やす。</li>
+      <li>以下の状況では特に積極的に使う：監視カメラが付いているエリアへの侵入時 / 夜間の戦闘 / 敵チームにアサシンがいる / 自チームが2レンジ構成 / ガジェットのORB偵察も使う。</li>
+      <li>使い過ぎには注意だが、自身がタンクや装備コストが安いキャラであれば多めに使ってよい。ガジェットポイントに余裕があるかどうかを常に確認する。</li>
+    </ul>
+  </div>
+
+  <div class="rank-section">
+    <h2>キャラ選択の考え方</h2>
     <ul class="tip-list">
       <li>自分が一番慣れているキャラを使う。強キャラより使い慣れたキャラの方が安定する。</li>
       <li>チーム構成は火力が足りていれば問題ない。</li>
