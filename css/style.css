@@ -809,6 +809,91 @@ main {
   color: var(--text-muted);
 }
 
+/* ===== TIP CARDS GRID (accordion) ===== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-4);
+  margin-bottom: var(--s-10);
+  align-items: start;
+}
+
+.tip-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-stratum);
+  overflow: hidden;
+}
+
+.tip-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-5) var(--s-6);
+  cursor: pointer;
+  user-select: none;
+  gap: var(--s-3);
+}
+
+.tip-card-header:hover {
+  background: var(--bg-raised);
+}
+
+.tip-card-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.tip-card-title {
+  font-family: var(--font-headline-jp);
+  font-size: var(--text-h3);
+  font-weight: 400;
+  color: var(--text);
+  flex: 1;
+}
+
+.tip-card-chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: transform 0.25s ease;
+}
+
+.tip-card.open .tip-card-chevron {
+  transform: rotate(180deg);
+}
+
+.tip-card-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+
+.tip-card.open .tip-card-body {
+  grid-template-rows: 1fr;
+}
+
+.tip-card-inner {
+  overflow: hidden;
+}
+
+.tip-card .tip-list {
+  padding: 0 var(--s-6) var(--s-5);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.tip-card .tip-list li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 680px) {
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== WOLF FARM SECTION ===== */
 .wolf-grid {
   display: grid;
