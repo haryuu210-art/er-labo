@@ -19,7 +19,7 @@ if sys.platform == "win32":
 # ============================================================
 # Google スプレッドシートのCSV公開URL
 # 設定方法: feedback_setup_guide.txt を参照
-SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6lOTrYEusIzi-0zIaKKb59zYf8jvPyq2oaUiClP1zLl4sb1NHLQYooMbwvqPPDOHsLowD43Tdh6LD/pub?gid=2032038044&single=true&output=csv"
+SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR93OF_a8klKbYQomsA5LlW3I4XeVMCKbLOdLV0e0N6OR31OwqXswhY0CFONPjeLqAPqDQBgPSXK42o/pub?gid=843627385&single=true&output=csv"
 
 # 既読済みの行数を記録するファイル
 STATE_FILE = os.path.join(os.path.dirname(__file__), "feedback_state.json")
