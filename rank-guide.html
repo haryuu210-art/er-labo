@@ -230,6 +230,7 @@
     <h2>オオカミファームルート（2日目昼）</h2>
 
     <div class="highlight-box">
+      <p class="season-note">このオオカミファームルートは、現在シーズン11時点の情報です。パッチ変更やメタの変化で最適ルートが変わる可能性があります。</p>
       オブジェクトファイトに負けた後の立て直しとして、変異オオカミ・オオカミ狩りでクレジットを稼ぐ動きが有効です。2日目昼になったタイミングで全体マップを確認し、他チームの位置を見て狩れそうなルートを選択します。状況次第で先行して狩りに行くことも視野に入れます。<br><br>
       <strong>注意：</strong>工場・洋弓場は他チームも同じ動きを考えていることが多く競合しやすいエリアです。個人的にはホテル→高級住宅街ルートか警察署ルートを好んで選ぶことが多いです。<br><br>
       <span class="wolf-note">※ あくまで個人の考え方・立ち回りです。参考程度にお使いください。</span>
@@ -268,18 +269,19 @@
   </div>
 
   <!-- Lightbox -->
-  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:1000; align-items:center; justify-content:center; flex-direction:column; gap:12px; overflow:hidden;">
-    <div id="lightbox-controls" style="position:absolute; top:16px; right:16px; display:flex; gap:8px; z-index:10;">
-      <button onclick="lbZoom(1.25)" style="background:var(--bg-raised); border:1px solid var(--border); color:var(--text); width:36px; height:36px; font-size:1.1rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center;">+</button>
-      <button onclick="lbZoom(0.8)"  style="background:var(--bg-raised); border:1px solid var(--border); color:var(--text); width:36px; height:36px; font-size:1.1rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center;">−</button>
-      <button onclick="lbReset()"    style="background:var(--bg-raised); border:1px solid var(--border); color:var(--text); width:36px; height:36px; font-size:0.65rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:var(--font-sans); letter-spacing:0.04em;">FIT</button>
-      <button onclick="closeLightbox()" style="background:var(--bg-raised); border:1px solid #f87171; color:#f87171; width:36px; height:36px; font-size:0.75rem; cursor:pointer; border-radius:4px; display:flex; align-items:center; justify-content:center;">✕</button>
+  <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="オオカミファームルート画像">
+    <div id="lightbox-controls" class="lightbox-controls">
+      <button class="lightbox-btn" onclick="lbZoom(1.25)" aria-label="拡大">+</button>
+      <button class="lightbox-btn" onclick="lbZoom(0.8)" aria-label="縮小">−</button>
+      <button class="lightbox-btn lightbox-fit" onclick="lbReset()" aria-label="表示をリセット">FIT</button>
+      <button class="lightbox-btn lightbox-close" onclick="closeLightbox()" aria-label="画像を閉じる">閉じる</button>
     </div>
-    <div id="lightbox-hint" style="position:absolute; bottom:48px; left:50%; transform:translateX(-50%); font-family:var(--font-jp); font-size:0.7rem; color:var(--text-muted); white-space:nowrap; pointer-events:none;">スクロール or ピンチでズーム　クリックでドラッグ移動</div>
-    <div id="lightbox-viewport" style="width:100%; height:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:grab;">
-      <img id="lightbox-img" src="" alt="" style="max-width:92vw; max-height:82vh; object-fit:contain; border:1px solid var(--border); border-radius:4px; transform-origin:center; user-select:none; transition:transform 0.1s ease;" draggable="false">
+    <div id="lightbox-hint" class="lightbox-hint">スクロール or ピンチでズーム / 背景タップ・ESCで閉じる</div>
+    <div id="lightbox-viewport" class="lightbox-viewport">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="" draggable="false">
     </div>
-    <div id="lightbox-label" style="position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-family:var(--font-jp); font-size:0.85rem; color:var(--text-secondary); white-space:nowrap;"></div>
+    <div id="lightbox-label" class="lightbox-label"></div>
+    <button class="lightbox-bottom-close" onclick="closeLightbox()" aria-label="画像を閉じる">閉じる</button>
   </div>
 
   <script>
@@ -314,13 +316,15 @@
       lbScale = 1; lbX = 0; lbY = 0;
       lbApply();
       const lb = document.getElementById('lightbox');
-      lb.style.display = 'flex';
+      lb.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      document.querySelector('.lightbox-close').focus();
     }
 
     function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+      document.getElementById('lightbox').classList.remove('is-open');
       document.body.style.overflow = '';
+      lbDragging = false;
     }
 
     /* Wheel zoom */
@@ -389,9 +393,15 @@
       if (e.touches.length === 0) lbDragging = false;
     });
 
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox' || e.target.id === 'lightbox-viewport') {
+        closeLightbox();
+      }
+    });
+
     /* Keyboard */
     document.addEventListener('keydown', e => {
-      if (document.getElementById('lightbox').style.display === 'none') return;
+      if (!document.getElementById('lightbox').classList.contains('is-open')) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === '+' || e.key === '=') lbZoom(1.25);
       if (e.key === '-') lbZoom(0.8);

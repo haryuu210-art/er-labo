@@ -33,6 +33,7 @@
     <div class="sidebar-section">
       <div class="sidebar-label">// SEARCH</div>
       <input type="text" class="search-box" id="searchInput" placeholder="キャラ名で検索...">
+      <p class="sidebar-help">ひらがな、カタカナ、英字名で探せます。</p>
     </div>
 
     <div class="sidebar-section">
@@ -55,6 +56,15 @@
       </div>
     </div>
 
+    <div class="sidebar-section quick-guide">
+      <div class="sidebar-label">// HOW TO USE</div>
+      <ol>
+        <li>相手キャラを検索</li>
+        <li>カードを選択</li>
+        <li>注意点と対策だけ確認</li>
+      </ol>
+    </div>
+
     <div class="sidebar-section">
       <div class="ai-notice-small">
         情報はAI生成を含みます。正確性は各自でご確認ください。
@@ -69,6 +79,11 @@
       <h1>キャラ対策データベース</h1>
       <div class="patch-info">最終更新: <span id="patchDate">2026-05-06</span> / シーズン11</div>
       <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:var(--s-3); line-height:1.7;">キャラ対策に関する情報は最優先で収集・反映しています。「この対策が知りたい」「情報が古い」などは<a href="feedback.html" style="color:var(--accent-main); text-decoration:none;">ご意見・ご要望</a>からお送りください。</p>
+      <div class="char-utility-row" aria-label="確認ポイント">
+        <span>ロールで絞る</span>
+        <span>名前で検索</span>
+        <span>詳細を右で確認</span>
+      </div>
     </div>
     <div class="char-grid" id="charGrid"></div>
   </main>
@@ -355,6 +370,10 @@
     document.getElementById('detailEmpty').style.display = 'none';
     document.getElementById('detailContent').style.display = 'block';
     document.getElementById('charDetail').classList.add('active');
+
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      document.getElementById('charDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   document.getElementById('detailClose').addEventListener('click', () => {
