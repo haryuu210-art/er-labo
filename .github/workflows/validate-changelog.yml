@@ -1,0 +1,29 @@
+name: Validate changelog
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check changelog policy
+        run: |
+          changed="$(git diff --name-only HEAD~1 HEAD || true)"
+          echo "$changed"
+          public_changed="$(echo "$changed" | grep -E '\.(html|css|js)$' | grep -v '^changelog\.html$' | grep -v '^scripts/' | grep -v '^\.github/' || true)"
+          if [ -n "$public_changed" ]; then
+            echo "Public site files changed:"
+            echo "$public_changed"
+            echo "$changed" | grep -q '^changelog\.html$' || {
+              echo "Public site files changed without updating changelog.html"
+              exit 1
+            }
+          fi
